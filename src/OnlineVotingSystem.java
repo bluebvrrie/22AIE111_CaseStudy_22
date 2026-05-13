@@ -257,7 +257,22 @@ public class OnlineVotingSystem {
                                 break;
 
                             case 3:
-                                election.startElection();
+
+                                if(totalCandidates == 0) {
+
+                                    System.out.println("Add candidates first!");
+                                }
+
+                                else if(totalVoters == 0) {
+
+                                    System.out.println("Add voters first!");
+                                }
+
+                                else {
+
+                                    election.startElection();
+                                }
+
                                 break;
 
                             case 4:
@@ -294,7 +309,10 @@ public class OnlineVotingSystem {
                         }
                         if (totalCandidates == 0) {
                             throw new VotingException("No candidates available!");
+                        }if (!election.isElectionStarted()) {
+                            throw new VotingException("Election has not started!");
                         }
+
                         System.out.print("Enter Voter ID: ");
                         int voterId = sc.nextInt();
                         sc.nextLine();
